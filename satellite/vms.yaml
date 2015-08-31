@@ -1,0 +1,5 @@
+---
+vms:
+  - name: "satellite"
+    box:  "rhel-70-x64-vbox-nocm"
+    roles: [ "satellite" ]

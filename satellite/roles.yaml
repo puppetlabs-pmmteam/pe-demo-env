@@ -1,0 +1,15 @@
+---
+roles:
+  satellite:
+    private_networks:
+      - ip: '0.0.0.0'
+        auto_network: true
+    provider:
+      type: virtualbox
+    provisioners:
+      - type: shell
+        inline: "iptables -F"
+      - type: hosts
+      - type: shell
+        inline: |-
+          /bin/bash /vagrant/satellite/scripts/install_satellite.sh

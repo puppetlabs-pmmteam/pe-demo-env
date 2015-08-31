@@ -1,0 +1,3 @@
+---
+boxes:
+  'rhel-70-x64-vbox-nocm': 'http://int-resources.ops.puppetlabs.net/vagrant/puppetless_boxes/rhel-70.virtualbox.box'
