@@ -1,0 +1,14 @@
+---
+roles:
+  wordpress:
+    private_networks:
+      - ip: '0.0.0.0'
+        auto_network: true
+    provisioners:
+      - type: shell
+        inline: "iptables -F"
+      - type: hosts
+      - type: shell
+        inline: |-
+          mkdir -p /etc/puppetlabs/facter/facts.d; echo "role=wordpress" > /etc/puppetlabs/facter/facts.d/role.txt
+      - type: pe_bootstrap
