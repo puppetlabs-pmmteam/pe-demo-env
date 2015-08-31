@@ -1,0 +1,40 @@
+---
+roles:
+  master:
+    private_networks:
+      - ip: '0.0.0.0'
+        auto_network: true
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 2048]
+        - [modifyvm, !ruby/sym id, '--ioapic', 'on']
+        - [modifyvm, !ruby/sym id, '--cpus', '4']
+    provisioners:
+      - type: shell
+        inline: "iptables -F"
+      - type: hosts
+      - type: pe_bootstrap
+        role: !ruby/sym master
+        autosign: true
+      - type: shell
+        inline: |-
+          which git; [ $? == 0 ] || puppet resource package git ensure=installed
+          ( [ -f /opt/puppetlabs/puppet/bin/librarian-puppet ] || /opt/puppetlabs/puppet/bin/gem install librarian-puppet );
+          ( /opt/puppetlabs/puppet/bin/gem list | grep puppetclassify || /opt/puppetlabs/puppet/bin/gem install puppetclassify );
+          <% Oscar.config_dir.each do |configdir| %>
+          <% demodir = File.basename(configdir) %>
+          cd /vagrant/<%= demodir %>/puppet && /opt/puppetlabs/puppet/bin/librarian-puppet install
+          /opt/puppetlabs/puppet/bin/puppet apply --modulepath /vagrant/<%= demodir %>/puppet/modules:/opt/puppetlabs/puppet/modules /vagrant/<%= demodir %>/puppet/manifests
+          <% end %>
+  agent:
+    private_networks:
+      - ip: '0.0.0.0'
+        auto_network: true
+    provisioners:
+      - type: shell
+        inline: "iptables -F"
+      - type: hosts
+      - type: pe_bootstrap
+        role: !ruby/sym agent
+

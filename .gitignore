@@ -1,0 +1,8 @@
+Puppetfile.lock
+modules
+tmp
+.DS_Store
+.vagrant
+.pe_build
+.tmp
+.librarian
