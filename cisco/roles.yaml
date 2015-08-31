@@ -1,0 +1,22 @@
+---
+roles:
+  cisco:
+    private_networks:
+      - ip: '0.0.0.0'
+        auto_network: true
+    synced_folders:
+      - host_path: '.'
+        guest_path: '/vagrant'
+        disabled: true
+    ssh:
+      insert_key: false
+    provider:
+      type: virtualbox
+      customize:
+        - ['modifyvm', !ruby/sym id, '--nicpromisc2', 'allow-all']
+        - ['modifyvm', !ruby/sym id, '--nicpromisc3', 'allow-all']
+        - ['modifyvm', !ruby/sym id, '--nicpromisc4', 'allow-all']
+        - ['modifyvm', !ruby/sym id, '--nicpromisc5', 'allow-all']
+        - ['modifyvm', !ruby/sym id, '--nicpromisc6', 'allow-all']
+        - ['modifyvm', !ruby/sym id, '--nicpromisc7', 'allow-all']
+        - ['modifyvm', !ruby/sym id, '--nicpromisc8', 'allow-all']

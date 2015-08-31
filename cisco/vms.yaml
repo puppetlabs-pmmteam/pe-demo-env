@@ -1,0 +1,5 @@
+---
+vms:
+  - name: "cisco"
+    box:  "camden_585"
+    roles: [ "cisco" ]

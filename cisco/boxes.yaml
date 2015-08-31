@@ -1,0 +1,3 @@
+---
+boxes:
+  'camden_585': 'http://int-resources.ops.puppetlabs.net/vagrant/puppetless_boxes/cisco_camden_585-nocm.box'
