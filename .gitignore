@@ -6,3 +6,7 @@ tmp
 .pe_build
 .tmp
 .librarian
+*.swp
+.files
+*.tar.gz
+pkg
