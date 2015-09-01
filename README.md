@@ -13,6 +13,7 @@
     * [Adding Vagrant Boxes](#adding-vagrant-boxes)
     * [Modifying the PE Master](#modifying-the-pe-master)
         * [Puppetfile](#puppetfile)
+    * [Using YAML ERB templates](#using-yaml-erb-templates)
 
 
 ## Overview
@@ -171,3 +172,13 @@ If your demo's Puppet manifests make use of modules, you can specify a
 Puppetfile in your demo's **puppet** directory. Note the Puppetfile only
 specifies modules to be used when provsiioning your specific demo.  The modules
 will not be installed on the master in a global modulepath.
+
+
+### Using YAML ERB templates
+
+Sometimes you need to put some logic or environment variables into your yaml
+configs.  To do so, you can write an ERB template that outputs valid YAML for
+your VMs, roles, boxes, etc.  Instead of using the .yaml file extension, using
+.yaml_erb file extension.  For example: **roles.yaml_erb**. It will
+automatically be parsed as a template. As long as its result is valid YAML, it
+will be treated as a static .yaml file. 
