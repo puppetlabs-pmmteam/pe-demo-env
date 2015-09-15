@@ -1,0 +1,7 @@
+---
+demo:
+  satellite:
+    inherits: 'base'
+    directory: 'satellite'
+    description: 'RH Satellite and Puppet Enterprise integration demo'
+    info_url: 'http://confluence.puppetlabs.com/some/path/to/docs'

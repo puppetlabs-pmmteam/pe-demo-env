@@ -1,0 +1,6 @@
+---
+demo:
+  base:
+    directory: 'base'
+    description: "A single PE monolithic master VM"
+    info_url: 'http://confluence.puppetlabs.com/some/path/to/docs'
