@@ -19,13 +19,21 @@ roles:
         autosign: true
       - type: shell
         inline: |-
-          which git; [ $? == 0 ] || puppet resource package git ensure=installed
-          ( [ -f /opt/puppetlabs/puppet/bin/librarian-puppet ] || /opt/puppetlabs/puppet/bin/gem install librarian-puppet );
           ( /opt/puppetlabs/puppet/bin/gem list | grep puppetclassify || /opt/puppetlabs/puppet/bin/gem install puppetclassify );
           <% Oscar.config_dir.each do |configdir| %>
           <% demodir = File.basename(configdir) %>
-          cd /vagrant/<%= demodir %>/puppet && /opt/puppetlabs/puppet/bin/librarian-puppet install
-          /opt/puppetlabs/puppet/bin/puppet apply --modulepath /vagrant/<%= demodir %>/puppet/modules:/opt/puppetlabs/puppet/modules /vagrant/<%= demodir %>/puppet/manifests
+          if [ -d /vagrant/<%= demodir %>/puppet ]; then
+            cd /vagrant/<%= demodir %>/puppet 
+            if [ -f /vagrant/<%= demodir %>/puppet/Puppetfile ]; then
+              /opt/puppetlabs/bin/r10k puppetfile install
+            fi
+
+            if [ -d /vagrant/<%= demodir %>/puppet/manifests ]; then
+              /opt/puppetlabs/puppet/bin/puppet apply \
+                --modulepath /vagrant/<%= demodir %>/puppet/modules:/opt/puppetlabs/puppet/modules \
+                /vagrant/<%= demodir %>/puppet/manifests
+            fi
+          fi
           <% end %>
   agent:
     private_networks:

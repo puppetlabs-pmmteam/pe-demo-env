@@ -2,8 +2,13 @@ Vcsrepo {
   ensure   => present,
   provider => git,
   notify   => Exec['deploy r10k'],
+  require  => Package['git'],
 }
   
+package { 'git':
+  ensure => installed,
+}
+
 vcsrepo { '/var/lib/peadmin/site':
   source   => 'https://github.com/puppetlabs-pmmteam/puppet-site.git',
 }
