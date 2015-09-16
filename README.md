@@ -84,14 +84,15 @@ The default demo consists of a single Puppet Enterprise monolithic master.  Ther
 are no agents nor any pre-canned demos for middleware, partner integrations, or
 use cases.
 
-Every directory inside the demo environment project is a demo. All demos inherit
-the base demo.  This means you can start with the base demo and add more demos
-to your running environment.
+To list available demo environments, use `vagrant demo list`.  This will give
+you currently loaded demo environments as well as the ones that are available
+to select.
 
-To do so, set the **demo** environment variable with a comman separated list
-of the demos your want to run.
+To select a demo, use `vagrant demo use demo_name`.  Multiple environments can
+be selected by providing a comma separated list of all the environments you
+want to use.  of the demos your want to run.
 
-        $ export demo=wordpress,cisco
+        $ vagrant demo use demo_a,demo_b
 
 Once done, you'll be able to use vagrant normally to start and provision the
 new VMs.
@@ -105,12 +106,27 @@ new VMs.
 ## Creating a new demo
 
 To create a new demo, just create a directory by the demo name in the project
-root. Inside your demo directory, you'll specify the VMs, roles, and Vagrant
-boxes you'll need to build your demo environment.
+root. Inside your demo directory, you'll specify a demo.yaml file, the VMs,
+roles, and Vagrant boxes you'll need to build your demo environment.
 
-Remember that every demo inherits the base demo, which is just a Puppet
-Enterprise master, so you will just need to worry about any additional VMs
-you'll need.
+It is highly recommended that your demo inherit the base demo, which is just a
+Puppet Enterprise master, so you will just need to worry about any additional
+VMs you'll need, as well as any modifications to the PE master such as
+classification rules.
+
+### demo.yaml
+
+In your demo environment's directory, create a demo.yaml file.  This file will
+specify all the metadata about your demo. All keys below are optional except
+the directory key.
+
+---
+demo:
+  demo_name:
+    inerits: base
+    description: "My demo's description"
+    directory: directory/relative/to/project/root
+    info_url: 'https://confluence.puppetlabs.com/demo/information'
 
 ### Adding VMs
 
