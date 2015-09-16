@@ -11,12 +11,13 @@ module Demo
 
   def load_directories(demo)
     directories = Array.new
-    demo_directory = File.join(vagrantdir, demo['directory'])
-    directories << demo_directory
 
     if demo.key?('inherits')
       directories << load_directories(demos[demo['inherits']])
     end
+
+    demo_directory = File.join(vagrantdir, demo['directory'])
+    directories << demo_directory
 
     directories
   end
