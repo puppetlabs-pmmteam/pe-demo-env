@@ -1,0 +1,11 @@
+---
+vms:
+  - name: "el1"
+    box:  "puppetlabs/centos-7.0-64-nocm"
+    roles: [ "agent" ]
+  - name: "el2"
+    box:  "puppetlabs/centos-7.0-64-nocm"
+    roles: [ "agent" ]
+  - name: "el3"
+    box:  "puppetlabs/centos-7.0-64-nocm"
+    roles: [ "agent" ]
