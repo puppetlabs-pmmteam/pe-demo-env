@@ -10,3 +10,4 @@ tmp
 .files
 *.tar.gz
 pkg
+.demo
