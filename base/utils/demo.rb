@@ -11,7 +11,8 @@ module Demo
 
   def load_directories(demo)
     directories = Array.new
-    directories << Array(demo['directory'])
+    demo_directory = File.join(vagrantdir, demo['directory'])
+    directories << demo_directory
 
     if demo.key?('inherits')
       directories << load_directories(demos[demo['inherits']])
