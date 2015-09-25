@@ -120,13 +120,13 @@ In your demo environment's directory, create a demo.yaml file.  This file will
 specify all the metadata about your demo. All keys below are optional except
 the directory key.
 
----
-demo:
-  demo_name:
-    inerits: base
-    description: "My demo's description"
-    directory: directory/relative/to/project/root
-    info_url: 'https://confluence.puppetlabs.com/demo/information'
+         ---
+         demo:
+            demo_name:
+               inerits: base
+               description: "My demo's description"
+               directory: directory/relative/to/project/root
+               info_url: 'https://confluence.puppetlabs.com/demo/information'
 
 ### Adding VMs
 
