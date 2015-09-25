@@ -1,8 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-require File.join File.dirname(__FILE__), 'base', 'utils', 'demo'
-
 case Vagrant::VERSION
 when /^1\.[1-4]/
   Vagrant.require_plugin('oscar')
@@ -10,6 +8,7 @@ else
   # The require_plugin call is deprecated in 1.5.x. Replacement? Dunno.
 end
 
+require File.join File.dirname(__FILE__), 'base', 'utils', 'demo'
 include ::Demo
 
 if defined? Oscar
