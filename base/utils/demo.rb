@@ -33,7 +33,10 @@ module Demo
   end
 
   def self.loaded_demos
-    saved_demos = IO.read(File.join(vagrantdir, '.demo')).split
+    demo_file = File.join(vagrantdir, '.demo')
+
+    saved_demos = File.exists?(demo_file) ? IO.read(demo_file).split : ['base']
+
     demo_list = Array.new
 
     saved_demos.each do |saved_demo|

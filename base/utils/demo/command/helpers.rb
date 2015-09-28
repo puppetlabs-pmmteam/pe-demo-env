@@ -37,7 +37,7 @@ module Demo::Command::Helpers
     if File.exists? demo_file
       IO.read(demo_file).split
     else
-      'base'
+      ['base']
     end
   end
 
