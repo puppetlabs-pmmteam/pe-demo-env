@@ -5,4 +5,8 @@ roles:
       - type: shell
         inline: |-
           cd /opt/puppetdb
-          LEIN_ROOT=1 lein run benchmark -c /etc/puppetlabs/puppetdb/conf.d/config.ini -n 100 -N 2 -r 20 -F /vagrant/reporting/fake_data/facts/ -C /vagrant/reporting/fake_data/catalogs -R /vagrant/reporting/fake_data/reports
+          if not [ -f /tmp/loaded ]; then
+            export LEIN_ROOT=1 
+            lein run benchmark -c /etc/puppetlabs/puppetdb/conf.d/config.ini -n 100 -N 2 -r 20 -F /vagrant/reporting/fake_data/facts/ -C /vagrant/reporting/fake_data/catalogs -R /vagrant/reporting/fake_data/reports
+            touch /tmp/loaded
+          fi
