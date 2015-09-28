@@ -1,0 +1,6 @@
+---
+demo:
+  reporting:
+    inherits: base
+    description: "Populates the PE Master with fake reporting data. Takes a long time to provision"
+    directory: reporting
