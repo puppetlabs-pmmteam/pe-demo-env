@@ -1,0 +1,6 @@
+forge "https://forgeapi.puppetlabs.com"
+
+mod 'puppetlabs-vcsrepo'
+mod 'puppetlabs-java'
+mod 'node_manager',
+  :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'

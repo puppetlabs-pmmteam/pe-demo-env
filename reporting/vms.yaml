@@ -1,0 +1,4 @@
+---
+vms:
+  - name: "master"
+    roles: [ "master", "reporting" ]
