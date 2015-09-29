@@ -44,7 +44,7 @@ repository.
 The following command will install Puppet, Virtualbox, Vagrant, and the
 necessary vagrant plugins
 
-        $ curl -sL http://git.io/tse-toolkit | sudo ruby
+      $ https://raw.githubusercontent.com/puppetlabs-pmmteam/pe-demo-env/master/base/scripts/install_demo_environment.sh | bash
 
 Once done, you can bring up a single master by running `vagrant up`
 
