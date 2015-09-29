@@ -24,7 +24,20 @@ operating systems. It's intended to give you an easy way to demonstrate Puppet
 Enterprise, Puppet Apps, and partner integrations  on a single laptop without 
 any outside infrastructure.
 
+## Quick Start
+
+The following command will install Puppet, Virtualbox, Vagrant, and the
+necessary vagrant plugins
+
+      $ curl https://raw.githubusercontent.com/puppetlabs-pmmteam/pe-demo-env/master/base/scripts/install_demo_environment.sh | bash
+
+Once done, you can bring up a single master by running `vagrant up`
+
+It's going to take a while for the VM to come up and be fully configured.
+
 ## Prerequisites 
+
+**Note, this section can be ignored if you followed the Quick Start section above.**
 
 This tool is built on top of a few different technologies, mainly VirtualBox
 and Vagrant, so you'll need to ensure that those are present before you
@@ -38,27 +51,6 @@ repository.
     * `$ vagrant plugin install vagrant-hosts`
     * `$ vagrant pluginugin install vagrant-reload`
     * `$ vagrant plugin install vagrant-multiprovider-snap` (optional, but you won't have snapshot functionality if you don't install it)
-
-## Quick Start
-
-The following command will install Puppet, Virtualbox, Vagrant, and the
-necessary vagrant plugins
-
-      $ curl https://raw.githubusercontent.com/puppetlabs-pmmteam/pe-demo-env/master/base/scripts/install_demo_environment.sh | bash
-
-Once done, you can bring up a single master by running `vagrant up`
-
-It's going to take a little while to download the Centos image and configure
-it, during which time you'll see a lot of activity in the terminal. When it
-finishes, you should see something like this:
-
-        Notice: /Stage[main]/Role::Puppetmaster/Exec[instantiate_environment]/returns: executed successfully
-        Notice: Finished catalog run in 379.72 seconds
-
-You may also see a warning that "The guest additions on this VM do not match
-the installed version of VirtualBox." That doesn't appear to impact the
-functionality and it should be fixed with a subsequent release of the
-seteam-vagrant-stack tool.
 
 ### Access the Puppet Enterprise Console
 
