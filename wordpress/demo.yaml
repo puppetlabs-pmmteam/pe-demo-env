@@ -1,0 +1,6 @@
+---
+demo:
+  wordpress:
+    inherits: base
+    description: "Sets up a wordpress host with auto classification based on custom role fact"
+    directory: wordpress
