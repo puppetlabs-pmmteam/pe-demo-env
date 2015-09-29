@@ -5,9 +5,8 @@
 1. [Overview](#overview)
 2. [Quick Start](#quick-start)
     * [Access the Puppet Enterprise Console](#access-the-puppet-enterprise-console)
-3. [Prerequisites](#prerequisites)
-4. [Selecting Demos](#selecting-demos)
-5. [Creating a New Demo](#creating-a-new-demo)
+3. [Selecting Demos](#selecting-demos)
+4. [Creating a New Demo](#creating-a-new-demo)
     * [Adding VMs](#adding-vms)
     * [Adding VM Roles](#adding-vm-roles)
     * [Adding Vagrant Boxes](#adding-vagrant-boxes)
@@ -34,23 +33,6 @@ necessary vagrant plugins
 Once done, you can bring up a single master by running `vagrant up`
 
 It's going to take a while for the VM to come up and be fully configured.
-
-## Prerequisites 
-
-**Note, this section can be ignored if you followed the Quick Start section above.**
-
-This tool is built on top of a few different technologies, mainly VirtualBox
-and Vagrant, so you'll need to ensure that those are present before you
-continue. You'll also need to have the Git tools installed to checkout the
-repository. 
-
-1. Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads).
-2. Install [Vagrant](http://vagrantup.com/).
-3. Install the required Vagrant plugins:
-    * `$ vagrant plugin install oscar`
-    * `$ vagrant plugin install vagrant-hosts`
-    * `$ vagrant pluginugin install vagrant-reload`
-    * `$ vagrant plugin install vagrant-multiprovider-snap` (optional, but you won't have snapshot functionality if you don't install it)
 
 ### Access the Puppet Enterprise Console
 
