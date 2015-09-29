@@ -1,0 +1,5 @@
+---
+demo:
+  cisco:
+    directory: cisco
+    inherits: base
