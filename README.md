@@ -29,7 +29,7 @@ any outside infrastructure.
 The following command will install Puppet, Virtualbox, Vagrant, and the
 necessary vagrant plugins
 
-      $ curl https://raw.githubusercontent.com/puppetlabs-pmmteam/pe-demo-env/master/base/scripts/install_demo_environment.sh | bash
+      $ curl http://links.puppetlabs.com/pe-demo-install-script | bash
 
 Once done, you can bring up a single master by running `vagrant up`
 
