@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pe-demo-env by puppetlabs-pmmteam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Pe-demo-env</h1>
+      <h2 class="project-tagline">Puppet Enterprise Demo Environment</h2>
+      <a href="https://github.com/puppetlabs-pmmteam/pe-demo-env" class="btn">View on GitHub</a>
+      <a href="https://github.com/puppetlabs-pmmteam/pe-demo-env/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/puppetlabs-pmmteam/pe-demo-env/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="puppet-enterprise-demo-environment" class="anchor" href="#puppet-enterprise-demo-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Puppet Enterprise Demo Environment</h1>
+
+<h4>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of Contents</h4>
+
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li>
+<a href="#quick-start">Quick Start</a>
+
+<ul>
+<li><a href="#access-the-puppet-enterprise-console">Access the Puppet Enterprise Console</a></li>
+</ul>
+</li>
+<li><a href="#selecting-demos">Selecting Demos</a></li>
+<li>
+<a href="#creating-a-new-demo">Creating a New Demo</a>
+
+<ul>
+<li><a href="#adding-vms">Adding VMs</a></li>
+<li><a href="#adding-vm-roles">Adding VM Roles</a></li>
+<li><a href="#adding-vagrant-boxes">Adding Vagrant Boxes</a></li>
+<li>
+<a href="#modifying-the-pe-master">Modifying the PE Master</a>
+
+<ul>
+<li><a href="#puppetfile">Puppetfile</a></li>
+</ul>
+</li>
+<li><a href="#using-yaml-erb-templates">Using YAML ERB templates</a></li>
+</ul>
+</li>
+</ol>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>This tool provides a quick way to bootstrap an example deployment of Puppet
+Enterprise, complete with a master and several managed nodes running different
+operating systems. It's intended to give you an easy way to demonstrate Puppet
+Enterprise, Puppet Apps, and partner integrations  on a single laptop without 
+any outside infrastructure.</p>
+
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Start</h2>
+
+<p>The following command will install Puppet, Virtualbox, Vagrant, and the
+necessary vagrant plugins</p>
+
+<pre><code>  $ curl https://raw.githubusercontent.com/puppetlabs-pmmteam/pe-demo-env/master/base/scripts/install_demo_environment.sh | bash
+</code></pre>
+
+<p>Once done, you can bring up a single master by running <code>vagrant up</code></p>
+
+<p>It's going to take a while for the VM to come up and be fully configured.</p>
+
+<h2>
+<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<p><strong>Note, this section can be ignored if you followed the Quick Start section above.</strong></p>
+
+<p>This tool is built on top of a few different technologies, mainly VirtualBox
+and Vagrant, so you'll need to ensure that those are present before you
+continue. You'll also need to have the Git tools installed to checkout the
+repository. </p>
+
+<ol>
+<li>Install <a href="https://www.virtualbox.org/wiki/Downloads">Virtual Box</a>.</li>
+<li>Install <a href="http://vagrantup.com/">Vagrant</a>.</li>
+<li>Install the required Vagrant plugins:
+
+<ul>
+<li><code>$ vagrant plugin install oscar</code></li>
+<li><code>$ vagrant plugin install vagrant-hosts</code></li>
+<li><code>$ vagrant pluginugin install vagrant-reload</code></li>
+<li>
+<code>$ vagrant plugin install vagrant-multiprovider-snap</code> (optional, but you won't have snapshot functionality if you don't install it)</li>
+</ul>
+</li>
+</ol>
+
+<h3>
+<a id="access-the-puppet-enterprise-console" class="anchor" href="#access-the-puppet-enterprise-console" aria-hidden="true"><span class="octicon octicon-link"></span></a>Access the Puppet Enterprise Console</h3>
+
+<p>You'll be back at the command prompt, but the puppet master is still running in
+the background. Before you can get to the console, you'll need to figure out
+where it is:</p>
+
+<pre><code>    $ vagrant hosts list
+</code></pre>
+
+<p>The response should look something like <code>10.20.1.1 master</code>, meaning that the
+<code>master</code> VM has the IP address of <code>10.20.1.1</code>. Next, just point your browser to
+<code>https://10.20.1.1</code> (or whatever the actual IP address is) and log in with the
+username <code>admin@puppetlabs.com</code>, password <code>puppetlabs</code>. Don't worry if you get
+a warning about the security certificate; that really won't affect anything. </p>
+
+<p>When you log in, you may notice that there's just one node listed: <code>master</code>.
+Not a bad start, but also not a great example of Puppet in action. In the next
+section, you'll add some additional nodes to manage.</p>
+
+<h2>
+<a id="selecting-demos" class="anchor" href="#selecting-demos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Selecting Demos</h2>
+
+<p>The default demo consists of a single Puppet Enterprise monolithic master.  There
+are no agents nor any pre-canned demos for middleware, partner integrations, or
+use cases.</p>
+
+<p>To list available demo environments, use <code>vagrant demo list</code>.  This will give
+you currently loaded demo environments as well as the ones that are available
+to select.</p>
+
+<p>To select a demo, use <code>vagrant demo use demo_name</code>.  Multiple environments can
+be selected by providing a comma separated list of all the environments you
+want to use.  of the demos your want to run.</p>
+
+<pre><code>    $ vagrant demo use demo_a,demo_b
+</code></pre>
+
+<p>Once done, you'll be able to use vagrant normally to start and provision the
+new VMs.</p>
+
+<pre><code>    $ vagrant status
+
+    master                    running (virtualbox)
+    wordpress                 not created (virtualbox)
+    cisco                     not created (virtualbox)
+</code></pre>
+
+<h2>
+<a id="creating-a-new-demo" class="anchor" href="#creating-a-new-demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a new demo</h2>
+
+<p>To create a new demo, just create a directory by the demo name in the project
+root. Inside your demo directory, you'll specify a demo.yaml file, the VMs,
+roles, and Vagrant boxes you'll need to build your demo environment.</p>
+
+<p>It is highly recommended that your demo inherit the base demo, which is just a
+Puppet Enterprise master, so you will just need to worry about any additional
+VMs you'll need, as well as any modifications to the PE master such as
+classification rules.</p>
+
+<h3>
+<a id="demoyaml" class="anchor" href="#demoyaml" aria-hidden="true"><span class="octicon octicon-link"></span></a>demo.yaml</h3>
+
+<p>In your demo environment's directory, create a demo.yaml file.  This file will
+specify all the metadata about your demo. All keys below are optional except
+the directory key.</p>
+
+<pre><code>     ---
+     demo:
+        demo_name:
+           inerits: base
+           description: "My demo's description"
+           directory: directory/relative/to/project/root
+           info_url: 'https://confluence.puppetlabs.com/demo/information'
+</code></pre>
+
+<h3>
+<a id="adding-vms" class="anchor" href="#adding-vms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding VMs</h3>
+
+<p>In your demo directory, create a <strong>vms.yaml</strong> file.  Inside, specify a list of
+all the VMs you'll need using a format something like this:</p>
+
+<pre><code>    ---
+    vms:
+      - name: "vm1"
+        box:  "puppetlabs/centos-7.0-64-nocm"
+        roles: [ "agent" ]
+      - name: "vm2"
+        box:  "puppetlabs/centos-7.0-64-nocm"
+        roles: [ "agent", "example_role2" ]
+</code></pre>
+
+<h3>
+<a id="adding-vm-roles" class="anchor" href="#adding-vm-roles" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding VM roles</h3>
+
+<p>In the demo directory, create a <strong>roles.yaml</strong> file. Inside, specify the list
+of roles using a format something like this: </p>
+
+<pre><code>    ---
+    roles:
+      example_role:
+        private_networks:
+          - ip: '0.0.0.0'
+            auto_network: true
+        provisioners:
+          - type: hosts
+          - type: pe_bootstrap
+          - type: shell
+            inline: |-
+              echo 'demo'
+</code></pre>
+
+<h3>
+<a id="adding-vagrant-boxes" class="anchor" href="#adding-vagrant-boxes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding vagrant boxes</h3>
+
+<p>In the demo directory, create a <strong>boxes.yaml</strong> file. Inside, specify the list
+of roles using a format something like this: </p>
+
+<pre><code>    ---
+    boxes:
+      'rhel-70-x64-vbox-nocm': 'http://int-resources.ops.puppetlabs.net/vagrant/puppetless_boxes/rhel-70.virtualbox.box'
+</code></pre>
+
+<h3>
+<a id="modifying-the-pe-master" class="anchor" href="#modifying-the-pe-master" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modifying the PE master</h3>
+
+<p>You can specify Puppet code to run on the PE master. This is useful to create
+node groups in the classifier, stage files and repositories, set up packages,
+and more.  Note this is entirely optional. </p>
+
+<p>In your demo directory, create a directory called <strong>puppet</strong>. Inside the puppet
+directory, create a <strong>manifests</strong> directory. All Puppet manifests go here. No
+classification is necesary.  When Puppet is run on the master, all .pp files in
+your demo's manifests directory will be combined into a single manifest.  This
+means every .pp file can contain raw resources without any classes.</p>
+
+<h4>
+<a id="puppetfile" class="anchor" href="#puppetfile" aria-hidden="true"><span class="octicon octicon-link"></span></a>Puppetfile</h4>
+
+<p>If your demo's Puppet manifests make use of modules, you can specify a
+Puppetfile in your demo's <strong>puppet</strong> directory. Note the Puppetfile only
+specifies modules to be used when provsiioning your specific demo.  The modules
+will not be installed on the master in a global modulepath.</p>
+
+<h3>
+<a id="using-yaml-erb-templates" class="anchor" href="#using-yaml-erb-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using YAML ERB templates</h3>
+
+<p>Sometimes you need to put some logic or environment variables into your yaml
+configs.  To do so, you can write an ERB template that outputs valid YAML for
+your VMs, roles, boxes, etc.  Instead of using the .yaml file extension, using
+.yaml_erb file extension.  For example: <strong>roles.yaml_erb</strong>. It will
+automatically be parsed as a template. As long as its result is valid YAML, it
+will be treated as a static .yaml file. </p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/puppetlabs-pmmteam/pe-demo-env">Pe-demo-env</a> is maintained by <a href="https://github.com/puppetlabs-pmmteam">puppetlabs-pmmteam</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
