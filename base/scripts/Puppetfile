@@ -1,0 +1,4 @@
+forge "https://forgeapi.puppetlabs.com"
+
+mod 'emyl-vagrant'
+mod 'skoblenick-virtualbox'
