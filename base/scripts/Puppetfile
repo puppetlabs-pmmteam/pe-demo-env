@@ -1,4 +1,7 @@
 forge "https://forgeapi.puppetlabs.com"
 
-mod 'emyl-vagrant'
+mod 'vagrant',
+  :git => 'https://github.com/ccaum/puppet-vagrant',
+  :ref => '357314c33a46f146d84caee7a81eada59d8fc3d2'
+
 mod 'skoblenick-virtualbox'
