@@ -3,9 +3,9 @@
 #### Table of Contents
 
 1. [Overview](#overview)
-2. [Prerequisites](#prerequisites)
-3. [Quick Start](#quick-start)
+2. [Quick Start](#quick-start)
     * [Access the Puppet Enterprise Console](#access-the-puppet-enterprise-console)
+3. [Prerequisites](#prerequisites)
 4. [Selecting Demos](#selecting-demos)
 5. [Creating a New Demo](#creating-a-new-demo)
     * [Adding VMs](#adding-vms)
