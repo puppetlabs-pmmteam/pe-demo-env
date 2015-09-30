@@ -1,7 +1,12 @@
 #!/bin/bash
 
-vagrant destroy -f wordpress
-vagrant snapshot back master
-vagrant provision 
-vagrant ssh master -c 'service pe-puppetserver start'
 vagrant up
+vagrant demo use reporting,wordpress
+vagrant snapshot back master
+vagrant snapshot back wordpress
+vagrant provision --provision-with shell,host
+vagrant ssh master    -c 'sudo service pe-puppetserver start' #WTF
+vagrant ssh master    -c 'sudo puppet agent -t'
+vagrant ssh wordpress -c 'sudo puppet agent -t'
+vagrant ssh master    -c 'sudo puppet agent --disable'
+vagrant ssh wordpress -c 'sudo puppet agent --disable'
