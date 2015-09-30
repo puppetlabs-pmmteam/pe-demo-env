@@ -1,0 +1,13 @@
+#!/bin/bash
+
+vagrant destroy -f
+vagrant demo use base
+vagrant up master
+
+vagrant demo use wordpress
+vagrant up wordpress --provision-with pe_bootstrap,hosts
+
+vagrant snapshot take master base
+vagrant snapshot take wordpress base
+
+./reset_demo
