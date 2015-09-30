@@ -34,6 +34,15 @@ Once done, you can bring up a single master by running `vagrant up`
 
 It's going to take a while for the VM to come up and be fully configured.
 
+The above script ensures the following software is installed on your system:
+
+* Puppet (gem if not already present)
+* librarian-puppet (gem)
+* Virtualbox 5.0
+* Vagrant (latest)
+* vagrant-oscar plugin
+* vagrant-vbox-snapshot plugin
+
 ### Access the Puppet Enterprise Console
 
 You'll be back at the command prompt, but the puppet master is still running in
