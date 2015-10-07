@@ -15,15 +15,3 @@ exec { 'populate fake data':
     Vcsrepo['/opt/puppetdb']
   ],
 }
-
-pe_hocon_setting { "console-services.console.no-longer-reporting-cutoff":
-  path    => "/etc/puppetlabs/console-services/conf.d/console.conf",
-  setting => 'console.no-longer-reporting-cutoff',
-  value   => 99999,
-  before  => Exec['populate fake data'],
-  notify  => Service['pe-puppetserver'],
-}
-
-service { 'pe-puppetserver':
-  ensure => running,
-}
