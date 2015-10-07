@@ -1,0 +1,7 @@
+#!/bin/bash
+
+vagrant destroy -f
+vagrant demo use base
+vagrant up
+vagrant snapshot take master
+./reset_demo.sh
