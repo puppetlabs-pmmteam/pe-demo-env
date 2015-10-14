@@ -1,0 +1,6 @@
+---
+demo:
+  '2015.3':
+    inherits: 'base'
+    directory: '2015.3'
+    description: "Nightly builds of the 2015.3 release"
