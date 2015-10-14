@@ -54,7 +54,7 @@ where it is:
 The response should look something like `10.20.1.1 master`, meaning that the
 `master` VM has the IP address of `10.20.1.1`. Next, just point your browser to
 `https://10.20.1.1` (or whatever the actual IP address is) and log in with the
-username `admin@puppetlabs.com`, password `puppetlabs`. Don't worry if you get
+username `admin`, password `puppetlabs`. Don't worry if you get
 a warning about the security certificate; that really won't affect anything. 
 
 When you log in, you may notice that there's just one node listed: `master`.
