@@ -40,7 +40,7 @@ module Demo
     demo_list = Array.new
 
     saved_demos.each do |saved_demo|
-      demo_list << demos[saved_demo]
+      demo_list << demos[saved_demo] if demos.include?(saved_demo)
     end
 
     demo_list
