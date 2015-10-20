@@ -13,6 +13,7 @@ class { 'pe_r10k':
 exec { 'deploy r10k':
   command     => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p',
   refreshonly => true,
+  require     => File['/etc/puppetlabs/license.key'],
   notify      => Exec['update classifier'],
 }
 
