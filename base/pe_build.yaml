@@ -1,6 +1,6 @@
 ---
 pe_build:
-  version: "2015.2.0"
+  version: "2015.2.1"
   download_root: "http://s3.amazonaws.com/pe-builds/released/:version"
 
 # Example of using pe_build to deploy a published PE release
