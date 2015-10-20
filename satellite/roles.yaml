@@ -13,3 +13,4 @@ roles:
       - type: shell
         inline: |-
           /bin/bash /vagrant/satellite/scripts/install_satellite.sh
+          /bin/bash /vagrant/satellite/scripts/satellite_configs.sh
