@@ -2,4 +2,6 @@
 demo:
   cisco:
     directory: cisco
+    description: "A single Cisco switch demo capable of demoing a spine or leaf switch and base configurations like SNMP"
     inherits: base
+    info_url: 'https://confluence.puppetlabs.com/x/_4DFAg'
