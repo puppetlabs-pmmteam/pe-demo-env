@@ -2,13 +2,13 @@
 vms:
   - name: "database"
     box:  "puppetlabs/centos-7.0-64-nocm"
-    roles: [ "database" ]
+    roles: [ "agent", "database" ]
   - name: "appserver01"
     box:  "puppetlabs/centos-7.0-64-nocm"
-    roles: [ "appserver" ]
+    roles: [ "agent", "appserver" ]
   - name: "appserver02"
     box:  "puppetlabs/centos-7.0-64-nocm"
-    roles: [ "appserver" ]
+    roles: [ "agent", "appserver" ]
   - name: "loadbalancer"
     box:  "puppetlabs/centos-7.0-64-nocm"
-    roles: [ "loadbalancer" ]
+    roles: [ "agent", "loadbalancer" ]
