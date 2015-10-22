@@ -1,0 +1,5 @@
+forge "https://forgeapi.puppetlabs.com"
+
+mod 'node_manager',
+  :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git',
+  :ref => 'e8595d6f29fc8d4e042ffcf4dea1a24983ab95e2'
