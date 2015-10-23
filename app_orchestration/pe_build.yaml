@@ -1,0 +1,19 @@
+---
+pe_build:
+  version: "2015.3.0-rc4-11-gd9e0c03"
+  download_root: "http://int-resources.ops.puppetlabs.net/carl/"
+
+# Example of using pe_build to deploy a published PE release
+#
+#     ---
+#     pe_build:
+#       version: "3.1.0"
+#       download_root: "http://s3.amazonaws.com/pe-builds/released/:version"
+#
+# Example of using pe_build to test unreleased builds
+#
+#     ---
+#     pe_build:
+#       version: "3.2.0-rc1-44-g538eaab"
+#       download_root: "http://enterprise.delivery.puppetlabs.net/3.2/ci-ready"
+#
