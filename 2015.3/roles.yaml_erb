@@ -43,6 +43,5 @@ roles:
       - type: shell
         inline: "iptables -F"
       - type: hosts
-      - type: pe_bootstrap
-        role: !ruby/sym agent
-
+      - type: pe_agent
+        master: master
