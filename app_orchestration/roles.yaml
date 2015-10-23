@@ -1,38 +1,17 @@
 ---
 roles:
   appserver:
-    private_networks:
-      - ip: '0.0.0.0'
-        auto_network: true
     provisioners:
-      - type: shell
-        inline: "iptables -F"
-      - type: hosts
       - type: shell
         inline: |-
           mkdir -p /etc/puppetlabs/facter/facts.d; echo "role=appserver" > /etc/puppetlabs/facter/facts.d/role.txt
-      - type: pe_bootstrap
   database:
-    private_networks:
-      - ip: '0.0.0.0'
-        auto_network: true
     provisioners:
-      - type: shell
-        inline: "iptables -F"
-      - type: hosts
       - type: shell
         inline: |-
           mkdir -p /etc/puppetlabs/facter/facts.d; echo "role=database" > /etc/puppetlabs/facter/facts.d/role.txt
-      - type: pe_bootstrap
   loadbalancer:
-    private_networks:
-      - ip: '0.0.0.0'
-        auto_network: true
     provisioners:
-      - type: shell
-        inline: "iptables -F"
-      - type: hosts
       - type: shell
         inline: |-
           mkdir -p /etc/puppetlabs/facter/facts.d; echo "role=loadbalancer" > /etc/puppetlabs/facter/facts.d/role.txt
-      - type: pe_bootstrap
