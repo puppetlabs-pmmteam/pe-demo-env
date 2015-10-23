@@ -11,6 +11,8 @@ end
 require File.join File.dirname(__FILE__), 'base', 'utils', 'demo'
 include ::Demo
 
+load_demo_utils
+
 if defined? Oscar
 
   class ReloadPluginSupport < ::ConfigBuilder::Model::Base

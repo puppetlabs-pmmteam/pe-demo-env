@@ -45,4 +45,13 @@ module Demo
 
     demo_list
   end
+
+  def load_demo_utils
+    demo_directories.each do |dir|
+      require_path = File.join(dir, 'utils', 'demo.rb')
+      if File.exists?( require_path )
+        require require_path
+      end
+    end
+  end
 end
