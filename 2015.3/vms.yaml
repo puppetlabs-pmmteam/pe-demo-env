@@ -1,0 +1,5 @@
+---
+vms:
+  - name: "master"
+    box:  "puppetlabs/centos-7.0-64-nocm"
+    roles: [ "master" ]
