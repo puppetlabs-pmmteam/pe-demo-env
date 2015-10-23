@@ -7,6 +7,7 @@ $curl_opts   = "--cacert ${cacert} --cert ${cert} --key ${key} --insecure"
 exec { 'run puppet':
   command     => '/opt/puppetlabs/bin/puppet agent -t',
   refreshonly => true,
+  returns     => [0,2],
   notify      => Exec['deploy r10k'],
 }
 
