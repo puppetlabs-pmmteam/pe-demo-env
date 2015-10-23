@@ -1,8 +1,6 @@
 node_group { 'Load Balancers':
   ensure               => 'present',
-  classes              => {
-    'profile::loadbalancer' => {}
-  },
+  classes              => { },
   environment          => 'production',
   rule                 => [ "=", [ "fact", "role" ], "loadbalancer" ],
   parent               => 'All Nodes',
@@ -10,9 +8,7 @@ node_group { 'Load Balancers':
 
 node_group { 'App Servers':
   ensure               => 'present',
-  classes              => {
-    'profile::appserver' => {}
-  },
+  classes              => { },
   environment          => 'production',
   rule                 => [ "=", [ "fact", "role" ], "appserver" ],
   parent               => 'All Nodes',
@@ -20,9 +16,7 @@ node_group { 'App Servers':
 
 node_group { 'Database Servers':
   ensure               => 'present',
-  classes              => {
-    'profile::database' => {}
-  },
+  classes              => { },
   environment          => 'production',
   rule                 => [ "=", [ "fact", "role" ], "database" ],
   parent               => 'All Nodes',
