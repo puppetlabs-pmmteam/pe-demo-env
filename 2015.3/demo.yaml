@@ -2,4 +2,4 @@
 demo:
   '2015.3':
     directory: '2015.3'
-    description: "Nightly builds of the 2015.3 release"
+    description: "Nightly builds of the 2015.3 release. Must be on VPN for this to work"

@@ -1,6 +1,6 @@
 ---
 pe_build:
-  version: "<%=`curl http://enterprise.delivery.puppetlabs.net/2015.3/ci-ready/LATEST`.strip %>"
+  version: "<%=`curl -s http://enterprise.delivery.puppetlabs.net/2015.3/ci-ready/LATEST`.strip %>"
   download_root: "http://enterprise.delivery.puppetlabs.net/2015.3/ci-ready"
 
 # Example of using pe_build to deploy a published PE release
