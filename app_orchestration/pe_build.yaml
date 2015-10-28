@@ -1,6 +1,6 @@
 ---
 pe_build:
-  version: "2015.3.0-rc4-11-gd9e0c03"
+  version: "2015.3.0-rc4-39-g9499e54"
   download_root: "http://int-resources.ops.puppetlabs.net/carl/"
 
 # Example of using pe_build to deploy a published PE release

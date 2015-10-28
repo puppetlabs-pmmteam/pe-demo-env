@@ -45,3 +45,4 @@ roles:
       - type: hosts
       - type: pe_agent
         master: master
+        master_vm: master
