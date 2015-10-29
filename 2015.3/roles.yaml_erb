@@ -46,3 +46,4 @@ roles:
       - type: pe_agent
         master: master
         master_vm: master
+        autopurge: false
