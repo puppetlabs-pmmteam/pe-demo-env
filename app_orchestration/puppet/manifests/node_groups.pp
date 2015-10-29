@@ -33,7 +33,8 @@ node_group { 'Database Servers':
                          'bind-address' => '0.0.0.0' 
                        }
                      }
-                   }
+                 },
+                 'git' => {},
   },
   environment => 'production',
   rule        => ['or', 
