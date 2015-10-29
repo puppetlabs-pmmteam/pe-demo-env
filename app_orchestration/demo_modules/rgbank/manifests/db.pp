@@ -4,6 +4,8 @@ define rgbank::db (
 ) {
   $db_name = "rgbank-${name}"
 
+  class { 'git': }
+  
   #Needed for the latest SQL file
   vcsrepo { "/var/lib/${db_name}":
     ensure   => present,
