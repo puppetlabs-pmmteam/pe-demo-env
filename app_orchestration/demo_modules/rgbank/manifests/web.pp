@@ -13,16 +13,18 @@ define rgbank::web (
     $install_dir_real = "/opt/rgbank-${name}"
   }
 
-  #vcsrepo { '/opt/rgbank':
-  #  ensure   => present,
-  #  source   => 'file:///var/lib/rgbank',
-  #  provider => git,
-  #}
+  vcsrepo { "${install_dir_real}/wp-content/themes/rgbank":
+    ensure   => present,
+    source   => 'file:///vagrant/app_orchestration/rgank_app/',
+    provider => git,
+    require  => Wordpress::Instance::App["rgbank_${name}"],
+    notify   => Service['httpd'],
+  }
 
   wordpress::instance::app { "rgbank_${name}":
     install_dir          => $install_dir_real,
     install_url          => 'http://wordpress.org',
-    version              => '3.8',
+    version              => '4.3.1',
     db_host              => $db_host,
     db_name              => $db_name,
     db_user              => $db_user,
@@ -41,6 +43,14 @@ define rgbank::web (
     wp_debug             => false,
     wp_debug_log         => false,
     wp_debug_display     => false,
+    notify               => Service['httpd'],
+  }
+
+  file { "${install_dir_real}/wp-content/uploads":
+    ensure  => directory,
+    owner   => apache,
+    group   => apache,
+    recurse => true,
   }
 
   apache::listen { $listen_port: }

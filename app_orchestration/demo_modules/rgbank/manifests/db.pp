@@ -8,7 +8,7 @@ define rgbank::db (
     user     => $user,
     password => $password,
     host     => '%',
-    grant    => ['SELECT', 'UPDATE'],
+    sql      => '/vagrant/app_orchestration/rgank_app/rgbank.sql',
   }
 
   mysql_user { "${user}@localhost":
