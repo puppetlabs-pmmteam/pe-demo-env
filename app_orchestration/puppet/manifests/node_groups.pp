@@ -15,6 +15,7 @@ node_group { 'App Servers':
                    'mysql::client'        => {},
                    'apache'               => { 'default_vhost' => false },
                    'apache::mod::php'     => {},
+                   'git'                  => {},
   },
   environment => 'production',
   rule        => ['or', 
