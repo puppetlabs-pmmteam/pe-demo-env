@@ -46,6 +46,27 @@ define rgbank::web (
     notify               => Service['httpd'],
   }
 
+  file { "${install_dir_real}/wp-content/uploads/2015":
+    ensure  => directory,
+    owner   => apache,
+    group   => apache,
+    recurse => true,
+  }
+
+  file { "${install_dir_real}/wp-content/uploads/2015/10":
+    ensure  => directory,
+    owner   => apache,
+    group   => apache,
+    recurse => true,
+  }
+
+  file { "${install_dir_real}/wp-content/uploads/2015/10/home-bg.jpg":
+    ensure  => file,
+    owner   => apache,
+    group   => apache,
+    source  => 'puppet:///modules/rgbank/home-bg.jpg',
+  }
+
   file { "${install_dir_real}/wp-content/uploads":
     ensure  => directory,
     owner   => apache,

@@ -4,11 +4,19 @@ define rgbank::db (
 ) {
   $db_name = "rgbank-${name}"
 
+  #Needed for the latest SQL file
+  vcsrepo { "/var/lib/${db_name}":
+    ensure   => present,
+    source   => 'https://github.com/puppetlabs-pmmteam/rgbank.git',
+    provider => git,
+    before   => Mysql::Db[$db_name],
+  }
+
   mysql::db { $db_name:
     user     => $user,
     password => $password,
     host     => '%',
-    sql      => '/vagrant/app_orchestration/rgank_app/rgbank.sql',
+    sql      => "/var/lib/${db_name}/rgbank.sql",
   }
 
   mysql_user { "${user}@localhost":
