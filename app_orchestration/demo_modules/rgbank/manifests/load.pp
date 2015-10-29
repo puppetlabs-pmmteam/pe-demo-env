@@ -1,14 +1,34 @@
 define rgbank::load (
-  $balancemembers,
+  $balancermembers,
+  $port = 80,
 ) {
+
+  haproxy::listen {"rgank-${name}":
+    collect_exported => false,
+    ipaddress        => '0.0.0.0',
+    mode             => 'http',
+    options          => {
+      'option'       => ['forwardfor', 'http-server-close', 'httplog'],
+      'balance'      => 'roundrobin',
+    },
+    ports            => '80',
+  }
+
+  $balancermembers.each |$member| {
+    haproxy::balancermember { $member['host']:
+      listening_service => "rgbank-${name}",
+      server_names      => $member['host'],
+      ipaddresses       => $member['ip'],
+      ports             => $member['port'],
+      options           => 'check verify none',
+    }
+  }
 }
 
-$balancemembers.each |$i| {
-  notify { "Adding ${i['ip']} to the balance pool": }
-  #haproxy::balancemember {
-  #  ip => Http['htp-lb-dev-1']['ipaddress']
-  #}
+Rgbank::Load produces Http {
+  name => $name,
+  ip   => $::ipaddress,
+  host => $::fqdn,
+  port => $port,
 }
-
-Rgbank::Load produces Http { }
-Rgbank::Load consumes Http { }
+#Rgbank::Load consumes Http { }

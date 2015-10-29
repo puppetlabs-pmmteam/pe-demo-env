@@ -5,8 +5,3 @@ rbac_user { 'joe':
   email        => 'joe@puppetlabs.com',
   password     => 'puppetlabs',
 }
-
-rbac_group { 'App Deployers':
-  ensure   => 'present',
-  user_ids => [ ['joe'] ],
-}

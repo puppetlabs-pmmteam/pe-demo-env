@@ -3,6 +3,7 @@ define rgbank::web (
   $db_host,
   $db_user,
   $db_password,
+  $listen_port = '8060',
   $install_dir = undef,
 ) {
 
@@ -42,17 +43,19 @@ define rgbank::web (
     wp_debug_display     => false,
   }
 
+  apache::listen { $listen_port: }
+
   apache::vhost { $::fqdn:
     docroot => $install_dir_real,
-    port    => 80,
+    port    => $listen_port,
   }
 }
 
 Rgbank::Web produces Http {
   name => $name,
-  ip   => $::ipaddress,
-  port => 80,
-  host => $::fqdn,
+  ip   => $::networking['interfaces']['enp0s8']['ip'],
+  port => $listen_port,
+  host => $::hostname,
 }
 
 Rgbank::Web consumes Mysqldb {

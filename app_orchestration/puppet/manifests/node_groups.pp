@@ -1,9 +1,12 @@
 node_group { 'Load Balancers':
-  ensure               => 'present',
-  classes              => { 'haproxy': {} },
-  environment          => 'production',
-  rule                 => [ "=", [ "fact", "role" ], "loadbalancer" ],
-  parent               => 'All Nodes',
+  ensure      => 'present',
+  classes     => { 'haproxy' => {} },
+  environment => 'production',
+  rule        => ['or', 
+                   ['and', ['=', ['fact', 'role'], 'loadbalancer']], 
+                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net']
+                 ],
+  parent      => 'All Nodes',
 }
 
 node_group { 'App Servers':
@@ -14,7 +17,10 @@ node_group { 'App Servers':
                    'apache::mod::php'     => {},
   },
   environment => 'production',
-  rule        => [ "=", [ "fact", "role" ], "appserver" ],
+  rule        => ['or', 
+                   ['and', ['=', ['fact', 'role'], 'appserver']], 
+                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net']
+                 ],
   parent      => 'All Nodes',
 }
 
@@ -29,6 +35,9 @@ node_group { 'Database Servers':
                    }
   },
   environment => 'production',
-  rule        => [ "=", [ "fact", "role" ], "database" ],
+  rule        => ['or', 
+                   ['and', ['=', ['fact', 'role'], 'database']], 
+                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net']
+                 ],
   parent      => 'All Nodes',
 }

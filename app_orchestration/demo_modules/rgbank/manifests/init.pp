@@ -20,8 +20,8 @@
   }
 
   rgbank::load { $name:
-    balancemembers => $webs,
-    require        => $webs,
-    export         => Http["rgbank-web-lb-${name}"],
+    balancermembers => $webs,
+    require         => $webs,
+    export          => Http["rgbank-web-lb-${name}"],
   }
 }
