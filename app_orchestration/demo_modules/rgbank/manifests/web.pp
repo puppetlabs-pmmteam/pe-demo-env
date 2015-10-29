@@ -15,7 +15,7 @@ define rgbank::web (
 
   vcsrepo { "${install_dir_real}/wp-content/themes/rgbank":
     ensure   => present,
-    source   => 'file:///vagrant/app_orchestration/rgank_app/',
+    source   => 'file:///var/lib/rgank_app/',
     provider => git,
     require  => Wordpress::Instance::App["rgbank_${name}"],
     notify   => Service['httpd'],
