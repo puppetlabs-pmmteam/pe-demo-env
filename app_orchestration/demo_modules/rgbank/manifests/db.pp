@@ -10,11 +10,16 @@ define rgbank::db (
     host     => '%',
     grant    => ['SELECT', 'UPDATE'],
   }
+
+  mysql_user { "${user}@localhost":
+    ensure   => 'present',
+    password_hash => mysql_password($password),
+  }
 }
 
-Rgbank::Db produces Mysql {
-  name     => $db_name,
+Rgbank::Db produces Mysqldb {
+  database => "rgbank-${name}",
   user     => $user,
-  host     => $::fqdn,
+  host     => $::hostname,
   password => $password
 }

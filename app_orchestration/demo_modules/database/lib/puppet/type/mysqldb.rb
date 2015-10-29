@@ -1,4 +1,4 @@
-Puppet::Type.newtype :mysql, :is_capability => true do
+Puppet::Type.newtype :mysqldb, :is_capability => true do
   newparam :name, :is_namevar => true
   newparam :user
   newparam :database

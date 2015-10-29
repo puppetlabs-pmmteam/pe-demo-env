@@ -22,8 +22,8 @@ define rgbank::web (
     install_dir          => $install_dir_real,
     install_url          => 'http://wordpress.org',
     version              => '3.8',
-    db_name              => $db_name,
     db_host              => $db_host,
+    db_name              => $db_name,
     db_user              => $db_user,
     db_password          => $db_password,
     wp_owner             => 'root',
@@ -55,8 +55,8 @@ Rgbank::Web produces Http {
   host => $::fqdn,
 }
 
-Rgbank::Web consumes Mysql {
-  db_name     => $name,
+Rgbank::Web consumes Mysqldb {
+  db_name     => $database,
   db_host     => $host,
   db_user     => $user,
   db_password => $password,

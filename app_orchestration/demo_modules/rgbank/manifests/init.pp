@@ -9,19 +9,19 @@
   rgbank::db { $name:
     user     => $db_username,
     password => $db_password,
-    export   => Mysql["rgbank-${name}"],
+    export   => Mysqldb["rgbank-${name}"],
   }
 
   $web_count.each |$i| {
     rgbank::web { "${name}-${i}":
+      consume => Mysqldb["rgbank-${name}"],
       export  => Http["rgbank-web-${name}-${i}"],
-      consume => Mysql["rgbank-${name}"],
     }
   }
 
   rgbank::load { $name:
-    host    => $webs,
-    consume => $webs,
-    export  => Http["rgbank-web-lb-${name}"],
+    balancemembers => $webs,
+    require        => $webs,
+    export         => Http["rgbank-web-lb-${name}"],
   }
 }

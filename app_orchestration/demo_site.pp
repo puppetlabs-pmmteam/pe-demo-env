@@ -2,10 +2,10 @@ site {
   #rgbank { 'staging':
   #  web_count => 2,
   #  nodes     => {
-  #    Node['appserver01']  => [ Rgbank::Web['staging-0'] ],
-  #    Node['appserver02']  => [ Rgbank::Web['staging-1'] ],
-  #    Node['loadbalancer'] => [ Rgbank::Load['staging'] ],
-  #    Node['database'] => [ Rgbank::Db['staging'] ],
+  #    Node['appserver01.delivery.puppetlabs.net']  => [ Rgbank::Web['staging-0'] ],
+  #    Node['appserver02.delivery.puppetlabs.net']  => [ Rgbank::Web['staging-1'] ],
+  #    Node['loadbalancer.delivery.puppetlabs.net'] => [ Rgbank::Load['staging'] ],
+  #    Node['database.delivery.puppetlabs.net']     => [ Rgbank::Db['staging'] ],
   #  },
   #}
 

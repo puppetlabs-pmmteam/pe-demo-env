@@ -1,6 +1,6 @@
 node_group { 'Load Balancers':
   ensure               => 'present',
-  classes              => { },
+  classes              => { 'haproxy': {} },
   environment          => 'production',
   rule                 => [ "=", [ "fact", "role" ], "loadbalancer" ],
   parent               => 'All Nodes',
