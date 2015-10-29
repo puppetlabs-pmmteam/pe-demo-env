@@ -23,3 +23,10 @@ exec { 'update classifier':
   command     => "/bin/curl -X POST -H 'Content-Type: application/json' ${curl_opts} https://localhost:4433/classifier-api/v1/update-classes",
   refreshonly => true,
 }
+
+file { '/etc/puppetlabs/code/environments':
+  ensure => symlink,
+  force  => true,
+  target => '/etc/puppetlabs/code-staging/environments',
+  notify => Exec['update classifier'],
+}

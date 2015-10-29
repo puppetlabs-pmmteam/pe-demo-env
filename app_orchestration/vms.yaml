@@ -12,3 +12,6 @@ vms:
   - name: "loadbalancer"
     box:  "puppetlabs/centos-7.0-64-nocm"
     roles: [ "agent", "loadbalancer" ]
+  - name: "rgbankdev"
+    box:  "puppetlabs/centos-7.0-64-nocm"
+    roles: [ "agent" ]

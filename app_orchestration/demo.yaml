@@ -4,5 +4,4 @@ demo:
     inherits: '2015.3'
     description: "A multi-host distributed app demo"
     directory: app_orchestration
-    info_url: "https://confluence.puppetlabs.com/x/m5CkAg"
-
+    info_url: "https://confluence.puppetlabs.com/x/hAHQAg"

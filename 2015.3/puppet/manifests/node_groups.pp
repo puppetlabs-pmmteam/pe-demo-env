@@ -15,3 +15,27 @@ node_group { 'PE Master':
   rule        => [ "or", [ "=", "name", $::hostname] ],
   notify      => Exec['run puppet','deploy r10k'],
 }
+
+node_group { 'PE Infrastructure':
+  classes => {
+    'puppet_enterprise' => {
+      'use_application_services' => true,
+      'mcollective_middleware_hosts' => ["master"],
+      'database_host' => "master",
+      'puppetdb_host' => "master",
+      'database_port' => "5432",
+      'database_ssl' => true,
+      'puppet_master_host' => "master",
+      'certificate_authority_host' => "master",
+      'console_port' => "443",
+      'puppetdb_database_name' => "pe-puppetdb",
+      'puppetdb_database_user' => "pe-puppetdb",
+      'pcp_broker_host' => "master",
+      'puppetdb_port' => "8081",
+      'console_host' => "master",
+      },
+  },
+  environment => 'production',
+  parent      => 'All Nodes',
+  notify      => Exec['run puppet'],
+}
