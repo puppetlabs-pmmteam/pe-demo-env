@@ -1,4 +1,4 @@
-  application rgbank (
+application rgbank (
   $web_count = 1,
   $db_username = 'test',
   $db_password = 'test'

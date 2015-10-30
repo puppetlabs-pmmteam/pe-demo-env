@@ -20,7 +20,7 @@ define rgbank::db (
   }
 
   mysql_user { "${user}@localhost":
-    ensure   => 'present',
+    ensure        => 'present',
     password_hash => mysql_password($password),
   }
 }

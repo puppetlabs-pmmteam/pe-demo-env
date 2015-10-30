@@ -72,6 +72,7 @@ define rgbank::web (
     owner   => apache,
     group   => apache,
     recurse => true,
+    require => Wordpress::Instance::App["rgbank_${name}"],
   }
 
   apache::listen { $listen_port: }
