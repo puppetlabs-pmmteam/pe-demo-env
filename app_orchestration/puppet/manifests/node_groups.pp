@@ -4,7 +4,8 @@ node_group { 'Load Balancers':
   environment => 'production',
   rule        => ['or', 
                    ['and', ['=', ['fact', 'role'], 'loadbalancer']], 
-                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net']
+                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net'],
+                   ['=', 'name', 'rgbankdev']
                  ],
   parent      => 'All Nodes',
 }
@@ -20,7 +21,8 @@ node_group { 'App Servers':
   environment => 'production',
   rule        => ['or', 
                    ['and', ['=', ['fact', 'role'], 'appserver']], 
-                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net']
+                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net'],
+                   ['=', 'name', 'rgbankdev']
                  ],
   parent      => 'All Nodes',
 }
@@ -39,7 +41,8 @@ node_group { 'Database Servers':
   environment => 'production',
   rule        => ['or', 
                    ['and', ['=', ['fact', 'role'], 'database']], 
-                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net']
+                   ['=', 'name', 'rgbankdev.delivery.puppetlabs.net'],
+                   ['=', 'name', 'rgbankdev']
                  ],
   parent      => 'All Nodes',
 }
