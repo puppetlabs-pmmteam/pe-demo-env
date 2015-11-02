@@ -6,7 +6,7 @@ define rgbank::db (
 
   #Needed for the latest SQL file
   vcsrepo { "/var/lib/${db_name}":
-    ensure   => present,
+    ensure   => latest,
     source   => 'https://github.com/puppetlabs-pmmteam/rgbank.git',
     provider => git,
     before   => Mysql::Db[$db_name],
