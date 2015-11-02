@@ -1,5 +1,5 @@
 Vcsrepo {
-  ensure   => present,
+  ensure   => latest,
   provider => git,
   notify   => Exec['deploy r10k'],
   require  => Package['git'],
@@ -10,7 +10,8 @@ package { 'git':
 }
 
 vcsrepo { '/var/lib/peadmin/site':
-  source   => 'https://github.com/puppetlabs-pmmteam/puppet-site.git',
+  revision => production,
+  source => 'https://github.com/puppetlabs-pmmteam/puppet-site.git',
 }
 
 vcsrepo { '/var/lib/peadmin/role':
