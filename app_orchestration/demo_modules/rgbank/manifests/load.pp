@@ -25,6 +25,12 @@ define rgbank::load (
   }
 }
 
+  firewall { '000 accept rgbank web connections':
+    dport  => $port,
+    proto  => tcp,
+    action => accept,
+  }
+
 Rgbank::Load produces Http {
   name => $name,
   ip   => $::ipaddress,
