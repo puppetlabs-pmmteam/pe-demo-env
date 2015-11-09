@@ -15,3 +15,8 @@ roles:
       - type: shell
         inline: |-
           mkdir -p /etc/puppetlabs/facter/facts.d; echo "role=loadbalancer" > /etc/puppetlabs/facter/facts.d/role.txt
+  all:
+    provisioners:
+      - type: shell
+        inline: |-
+          mkdir -p /etc/puppetlabs/facter/facts.d; echo "role=loadbalancer,appserver,database" > /etc/puppetlabs/facter/facts.d/role.txt
