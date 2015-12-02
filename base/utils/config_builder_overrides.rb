@@ -41,3 +41,13 @@ class ConfigBuilder::Loader::YAML
     end
   end
 end
+
+class ReloadPluginSupport < ::ConfigBuilder::Model::Base
+  def to_proc
+    Proc.new do |vm_config|
+      vm_config.provision :reload
+    end
+  end
+
+  ::ConfigBuilder::Model::Provisioner.register('reload', self)
+end

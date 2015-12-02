@@ -1,0 +1,17 @@
+---
+vms:
+  - name: "server2012r2"
+    box: "windows-server-2012r2-v3"
+    guest: windows
+    communicator: winrm
+    private_networks:
+      - {ip: '0.0.0.0', auto_network: true}
+    provisioners:
+      - {type: hosts}
+      - type: shell
+        inline: 'Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLUA" -Value "0"'
+      - {type: reload}
+      - type: pe_agent
+        master: master
+        master_vm: master
+        autopurge: false
