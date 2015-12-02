@@ -1,0 +1,2 @@
+boxes:
+  'windows-server-2012r2-v3': 'https://s3.amazonaws.com/saleseng/boxfiles/win2012r2-x64-virtualbox-nocm.box'

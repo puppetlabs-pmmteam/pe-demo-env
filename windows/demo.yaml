@@ -1,0 +1,6 @@
+---
+demo:
+  windows:
+    inherits: base
+    description: "Specifies a windows box to manage"
+    directory: windows
