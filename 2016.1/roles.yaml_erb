@@ -1,0 +1,49 @@
+---
+roles:
+  master:
+    private_networks:
+      - ip: '0.0.0.0'
+        auto_network: true
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 4096]
+        - [modifyvm, !ruby/sym id, '--ioapic', 'on']
+        - [modifyvm, !ruby/sym id, '--cpus', '4']
+    provisioners:
+      - type: shell
+        inline: "iptables -F"
+      - type: hosts
+      - type: pe_bootstrap
+        role: !ruby/sym master
+        autosign: true
+      - type: shell
+        inline: |-
+          ( /opt/puppetlabs/puppet/bin/gem list | grep puppetclassify || /opt/puppetlabs/puppet/bin/gem install puppetclassify );
+          <% Oscar.config_dir.each do |configdir| %>
+          <% demodir = File.basename(configdir) %>
+          if [ -d /vagrant/<%= demodir %>/puppet ]; then
+            cd /vagrant/<%= demodir %>/puppet 
+            if [ -f /vagrant/<%= demodir %>/puppet/Puppetfile ]; then
+              /opt/puppetlabs/bin/r10k puppetfile install
+            fi
+
+            if [ -d /vagrant/<%= demodir %>/puppet/manifests ]; then
+              /opt/puppetlabs/puppet/bin/puppet apply \
+                --modulepath /vagrant/<%= demodir %>/puppet/modules:/opt/puppetlabs/puppet/modules \
+                /vagrant/<%= demodir %>/puppet/manifests
+            fi
+          fi
+          <% end %>
+  agent:
+    private_networks:
+      - ip: '0.0.0.0'
+        auto_network: true
+    provisioners:
+      - type: shell
+        inline: "iptables -F"
+      - type: hosts
+      - type: pe_agent
+        master: master
+        master_vm: master
+        autopurge: false

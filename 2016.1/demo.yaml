@@ -1,0 +1,5 @@
+---
+demo:
+  '2016.1':
+    directory: '2016.1'
+    description: "Nightly builds of the Puppet Enterprise. Must be on VPN for this to work"
