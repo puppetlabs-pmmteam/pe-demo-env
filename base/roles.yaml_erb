@@ -7,7 +7,7 @@ roles:
     provider:
       type: virtualbox
       customize:
-        - [modifyvm, !ruby/sym id, '--memory', 2048]
+        - [modifyvm, !ruby/sym id, '--memory', 4096]
         - [modifyvm, !ruby/sym id, '--ioapic', 'on']
         - [modifyvm, !ruby/sym id, '--cpus', '4']
     provisioners:
